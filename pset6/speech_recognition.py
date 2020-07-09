@@ -11,3 +11,14 @@ with speech_recognition.Microphone() as source:
 
 print("Google Speech Recognition thinks you said:")
 print(recognizer.recognize_google(audio))
+
+words = recognizer.recognize_google(audio)
+
+if "hello" in words:
+    print("Hello to you too!")
+elif "how are you" in words:
+    print("I am well, thanks!")
+elif "googbye" in words:
+    print("Goodbye to you too!")
+else:
+    print("Huh?")            
