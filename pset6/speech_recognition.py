@@ -12,6 +12,7 @@ with speech_recognition.Microphone() as source:
 print("Google Speech Recognition thinks you said:")
 print(recognizer.recognize_google(audio))
 
+...
 words = recognizer.recognize_google(audio)
 
 if "hello" in words:
@@ -21,4 +22,17 @@ elif "how are you" in words:
 elif "googbye" in words:
     print("Goodbye to you too!")
 else:
-    print("Huh?")            
+    print("Huh?")  
+
+#Regular Expressions in Python
+
+...
+words = recognizer.recognize_google(audio)
+
+matches = re.search("my name is (.*)", words)
+if matches:
+    print(f"Hey, {matches[1]}.")
+else:
+    print("Hey, you.")
+        
+
