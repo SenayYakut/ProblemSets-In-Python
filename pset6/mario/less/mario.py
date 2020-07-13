@@ -7,3 +7,8 @@
 #Take care to align the bottom-left corner of your half-pyramid with the left-hand edge of your terminal window.
 
 
+num = int(input("Enter a height from 1 to 8 for the half of pyramid: "))
+
+for i in range(1,num+1):
+    print("  "*(num-i) +"# "*i)
+        
