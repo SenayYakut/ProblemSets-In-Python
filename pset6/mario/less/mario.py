@@ -6,9 +6,14 @@
 #Then, generate (with the help of print and one or more loops) the desired half-pyramid.
 #Take care to align the bottom-left corner of your half-pyramid with the left-hand edge of your terminal window.
 
+from cs50 import get_int
 
-num = int(input("Enter a height from 1 to 8 for the half of pyramid: "))
-
-for i in range(1,num+1):
-    print("  "*(num-i) +"# "*i)
-        
+# while loop will continue until user inputs matches with expected input
+while True:
+    num = get_int("height: ")
+    if num >= 1 and num <= 8:
+        break
+# For loop will iterate in the range of 1 and given number        
+for i in range(1, num + 1):
+    # Program will print num - i times empthy space and i times
+    print(" " * (num-i) + "#" * i)
