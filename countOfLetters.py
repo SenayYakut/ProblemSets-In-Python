@@ -3,8 +3,10 @@
 
 import re
 
-text = input("Enter the text: ")
-    
+while True:
+    text = input("Enter the text: ")
+    if len(text) > 0:
+        break
 
 def letterCount(text):
     pattern = "\w"
