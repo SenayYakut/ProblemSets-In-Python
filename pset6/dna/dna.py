@@ -2,38 +2,53 @@ import csv
 from sys import argv, exit
 
 
-if len(argv) != 3:
-    print("missing command_line argument")
-    exit(1)
+    
+# Calculate the max number of time sub string  consequtively repeated
+def get_maximum_number_of_times_substring(s,sub):
+    ans = [0] * len(s)
+    for i in range(len(s) -len(sub), -1, -1):
+        if s[i: i + len(sub)] == sub:
+            if i + len(sub) > len(s) - 1:
+                ans[i] = 1
+            else:
+                ans[i] = 1 + ans[i + len(sub)]
+    return max(ans)
+
+
+def print_match(reader, actual):
+    for line in reader:
+        person = line[0]
+        values = [int(val) for val in line[1:]]
+        if values == actual:
+            print(person)
+            return 
+    print("No match")    
+# Opening the csv file(it is the second comand-line argument, index first) and reading it's content into memory
+def main():
+# Verifying if the user provided correct number of command-line arguments
+    if len(argv) != 3:
+        print("missing command-line argument")
+        exit(1)    
+    with open(argv[1]) as csv_file:
+        reader = csv.reader(csv_file)
+        # for row in reader:
+        #    print(row)
+        all_sequences = next(reader)[1:]
+        # Opening the txt file and reading its content into memory
+        with open(argv[2]) as txt_file:
+            s = txt_file.read()
+            actual = [get_maximum_number_of_times_substring(s,seq) for seq in all_sequences]
+
+        print_match(reader, actual)
+
+
+if __name__ == "__main__":
+    main()
 
 
 
-# Opening the csv file and reading its content into the memory
 
-with open(argv[1], "r") as csv_file:
-    reader = csv.DictReader(csv_file)
-    dict_list =[]
-    for row in reader:
-        dict_list.append(row)
-# print(dict_list)
 
-with open(argv[2], "r") as txt_file:
-    s = txt_file.read()
-    AGATC = s.count("AGATC")
-    TTTTTTCT = s.count("TTTTTTCT")
-    AATG = s.count("AATG")
-    TCTAG = s.count("TCTAG")
-    GATA = s.count("GATA")
-    TATC = s.count("TATC")
-    GAAA = s.count("GAA")
-    TCTG = s.count("TCTG")
-    dict_l = []
-    dict_l.append(AGATC)
-    dict_l.append(TTTTTTCT)
-    dict_l.append(AATG)
-    dict_l.append(TCTAG)
-    dict_l.append(GATA)
-    dict_l.append(TATC)
-    dict_l.append(GAAA)
-    dict_l.append(TCTG)
-    print(dict_l)
+
+
+
